@@ -295,77 +295,77 @@ export class UIController {
       this.contactControls.classList.toggle('hidden', index !== 9);
     }
 
-    // Update HUD Cards with verified problem & result statements
+    // Update HUD Cards with verified problem & result statements (concise, truthful, no em dashes)
     const dataMap = {
       0: {
-        kicker: 'CHAPTER 00 // THRESHOLD',
-        title: 'The Berserker Entrance',
-        problem: 'Complex industrial and global supply chain systems operate behind heavy friction.',
-        impact: 'Guts Berserker Armor avatar strikes the monolithic threshold with the 2.2m Dragon Slayer, opening the continuum.',
+        kicker: '00 / THRESHOLD',
+        title: 'I connect the parts, people, and decisions that keep things moving.',
+        problem: 'A recognizable Guts in Berserker Armor cleaves the threshold with the Dragon Slayer, opening the engineering and supply chain systems inside.',
+        impact: 'Supply chain and operations. M.S. Engineering Management, USC (2026). Available January 2027.',
         showEvidence: false
       },
       1: {
-        kicker: 'CHAPTER 01 // STRATEGIC SOURCING',
-        title: 'Generac Power Systems',
-        problem: 'PWRmicro NPI single-source risks, drawing/quote mismatches, and uncompetitive component tiering.',
-        impact: 'Reconciled engineering BOMs/CBOMs across 20+ priority components; identified $1.2M annualized sourcing opportunity in Arena PLM.',
+        kicker: '01 / SOURCING & NPI · GENERAC',
+        title: 'Every part has a bigger picture.',
+        problem: 'A quote is only useful when the part number, demand, and evidence agree.',
+        impact: 'Reconciled engineering BOMs, costed BOMs, supplier quotes, and annual demand across 20+ priority components. Identified $1.2M annualized sourcing opportunity. (Résumé-reported opportunity, not realized savings. Internal assembly is conceptual.)',
         showEvidence: true,
         evidenceLabel: 'View $1.2M Sourcing Breakdown'
       },
       2: {
-        kicker: 'CHAPTER 02 // WAREHOUSE OPERATIONS',
-        title: 'USC Bookstore & Distribution Center',
-        problem: 'End-to-end inventory variances and fulfillment bottlenecks across 1,000+ SKUs.',
-        impact: 'Introduced ERP-driven cycle counting and Pareto ABC slotting; improved accuracy above 98%, cut cycle time by 15%, reduced errors by 10%.',
+        kicker: '02 / WAREHOUSE OPERATIONS · USC BOOKSTORE DC',
+        title: 'Better flow starts on the floor.',
+        problem: 'A thousand SKUs. One stock flow that needs to make sense.',
+        impact: 'ERP-driven cycle counting, Excel reconciliation, process mapping, and slotting analysis to make inventory discrepancies visible and improve restocking. (>98% inventory accuracy. The route demonstration is illustrative.)',
         showEvidence: false
       },
       3: {
-        kicker: 'CHAPTER 03 // STATUTORY TESTING OPERATIONS',
-        title: 'Vindeep Expo Engineers',
-        problem: 'Multi-site testing coordination for pressure vessels and lifting equipment under strict regulatory compliance.',
-        impact: 'Engineered centralized reporting dashboard (MS Project + Excel), cutting audit prep by 15% and sustaining 100% regulatory adherence.',
+        kicker: '03 / TESTING OPERATIONS · VINDEEP EXPO ENGINEERS',
+        title: 'Readiness is a system.',
+        problem: 'The equipment is only one part of a successful inspection.',
+        impact: 'Coordinated multi-site statutory testing for pressure vessels and lifting equipment, connecting schedules, risk registers, compliance records, and reporting. (15% less audit preparation time. The vessel illustrates the operating context.)',
         showEvidence: false
       },
       4: {
-        kicker: 'CHAPTER 04 // AUTOMATION ENGINEERING',
-        title: 'Larsen & Toubro',
-        problem: 'Welding defect latency and post-process rework exposure in heavy industrial fabrication.',
-        impact: 'Engineered portable robotic welding seam-monitoring system integrating SolidWorks prototypes and Python automation; defect detection +20%.',
+        kicker: '04 / MANUFACTURING SYSTEMS · LARSEN & TOUBRO',
+        title: 'See the seam. Find the signal.',
+        problem: 'Better monitoring brings the process into focus.',
+        impact: 'Integrated SolidWorks prototypes, electrical subsystems, and Python automation in a portable welding seam-monitoring system, alongside supplier and feasibility analysis. (20% improvement in defect detection and process reliability. The monitoring pass is an explanatory animation.)',
         showEvidence: false
       },
       5: {
-        kicker: 'CHAPTER 05 // QUALITY ASSURANCE',
-        title: 'Banco Products (India) Ltd.',
-        problem: 'Welding-related defect rates and process bottlenecks in automotive heat exchanger manufacturing.',
-        impact: 'Executed RCA, FMEA, SPC, and Lean audits; identified 10+ bottlenecks and led Kaizen/5S initiative reducing welding costs by 12%.',
+        kicker: '05 / QUALITY & PROCESS · BANCO PRODUCTS',
+        title: 'Follow the problem upstream.',
+        problem: 'A defect is a clue to the process that made it.',
+        impact: 'Through RCA, FMEA, SPC, and Lean process audits, identified bottlenecks and applied Kaizen and 5S to welding cost improvement. (12% reduction in welding-related costs. Defect locations are illustrative, not an inspection record.)',
         showEvidence: false
       },
       6: {
-        kicker: 'CHAPTER 06 // AGENTIC OPERATIONS WORKBENCH',
-        title: 'AI Supply Chain Decision Workbench',
-        problem: 'Operating unit visibility gaps across multi-facility manufacturing networks.',
-        impact: 'Built Python Model Context Protocol (MCP) server with four governed tools for KPI segmentation, evidence retrieval, opportunity sizing, and brief generation over 12 plants.',
+        kicker: '06 / INDEPENDENT PROJECT · AI DECISION WORKBENCH',
+        title: 'From plant data to a decision.',
+        problem: 'A recommendation should lead back to its evidence.',
+        impact: 'Built a Python MCP server exposing four governed tools: KPI segmentation, evidence retrieval, opportunity sizing, and recommendation generation over a simulated 12-plant network. (Portfolio diagram uses illustrative node positions. It is not a live MCP or ERP connection.)',
         showEvidence: false
       },
       7: {
-        kicker: 'CHAPTER 07 // INVENTORY OPTIMIZATION',
-        title: 'Inventory Policy Optimization (FOQ vs LFL vs POQ)',
-        problem: 'Demand volatility and cost-to-serve trade-offs across holding, ordering, and stockout penalty parameters.',
-        impact: 'Modeled total operational cost across FOQ, LFL, and POQ replenishment rules; identified POQ strategy delivering 8–15% overall cost reduction.',
+        kicker: '07 / INDEPENDENT PROJECT · INVENTORY OPTIMIZATION',
+        title: 'Same demand. Different decisions.',
+        problem: 'What changes when you change the replenishment rule?',
+        impact: 'Compared FOQ, LFL, and POQ with forecasting, cost modeling, and sensitivity analysis. (8–15% is modeled inventory-cost improvement, not achieved company savings. The interactive example uses separate sample inputs.)',
         showEvidence: false
       },
       8: {
-        kicker: 'CHAPTER 08 // ACADEMIC FOUNDATION',
-        title: 'Academic Background & Coursework',
-        problem: 'Bridging engineering mechanics, spreadsheet modeling, and operations management.',
-        impact: 'USC M.S. in Engineering Management (Expected Dec 2026) & Pandit Deendayal Petroleum University B.Tech in Mechanical Engineering (May 2023).',
+        kicker: '08 / ACADEMIC FOUNDATION · USC & PDEU',
+        title: 'Engineering, from two perspectives.',
+        problem: 'Understand the physical system. Then improve how it works.',
+        impact: 'M.S. in Engineering Management, USC Viterbi, expected December 2026. B.Tech. in Mechanical Engineering, Pandit Deendayal Petroleum University, May 2023.',
         showEvidence: false
       },
       9: {
-        kicker: 'CHAPTER 09 // CONTACT DESTINATION',
-        title: 'Contact & Executive Reach-Out',
-        problem: 'Connecting with Harsh Mistry for Full-Time Supply Chain, Sourcing & Operations Roles (Available Jan 2027).',
-        impact: 'Interactive particle sculpture morphing between Envelope, LinkedIn, and Résumé with zero dead clicks.',
+        kicker: '09 / LET’S CONNECT · CONTACT',
+        title: 'Let’s make things work better.',
+        problem: 'I am looking for teams solving real supply chain, operations, and manufacturing problems.',
+        impact: 'Available for full-time opportunities from January 2027. Contact: harshnil@usc.edu. Based in Los Angeles, open to relocation.',
         showEvidence: false
       }
     };

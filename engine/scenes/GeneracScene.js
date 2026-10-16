@@ -33,15 +33,17 @@ export class GeneracScene {
     const H = 3.76;
     const D = 0.57;
 
-    const aluMat = this.rendererInstance.materials.brushedAluminum || new THREE.MeshStandardMaterial({
-      color: 0x94a3b8,
-      metalness: 0.85,
-      roughness: 0.28
+    // Authentic black die-cast aluminum enclosure with matte powder-coat finish
+    // Matching official PWRmicro Installation Manual (Doc a0008718926) & product reference photo
+    const blackEnclosureMat = new THREE.MeshStandardMaterial({
+      color: 0x18181b, // Zinc-900 matte industrial black
+      metalness: 0.65,
+      roughness: 0.58
     });
 
     const darkTrimMat = new THREE.MeshStandardMaterial({
-      color: 0x1e293b,
-      metalness: 0.6,
+      color: 0x09090b,
+      metalness: 0.8,
       roughness: 0.4
     });
 
@@ -49,32 +51,32 @@ export class GeneracScene {
     this.frontHousing = new THREE.Group();
 
     const frontPanelGeo = new THREE.BoxGeometry(W, H, 0.12);
-    const frontPanel = new THREE.Mesh(frontPanelGeo, aluMat);
+    const frontPanel = new THREE.Mesh(frontPanelGeo, blackEnclosureMat);
     frontPanel.castShadow = true;
     this.frontHousing.add(frontPanel);
 
-    // Beveled perimeter bezel
+    // Beveled perimeter bezel with chamfered cast rim
     const bezelGeo = new THREE.BoxGeometry(W + 0.08, H + 0.08, 0.08);
     const bezel = new THREE.Mesh(bezelGeo, darkTrimMat);
     bezel.position.z = -0.04;
     this.frontHousing.add(bezel);
 
-    // Embossed Generac Branding Plate & QR Code label pad
-    const badgeGeo = new THREE.PlaneGeometry(1.2, 0.35);
-    const badgeMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.5 });
+    // Laser-etched Generac Branding Plate & Compliance Specifications
+    const badgeGeo = new THREE.PlaneGeometry(1.4, 0.42);
+    const badgeMat = new THREE.MeshStandardMaterial({ color: 0x27272a, roughness: 0.5, metalness: 0.4 });
     const badge = new THREE.Mesh(badgeGeo, badgeMat);
-    badge.position.set(0, 0.8, 0.065);
+    badge.position.set(0, 0.85, 0.065);
     this.frontHousing.add(badge);
 
-    // Status Indicator LED (Printed manual component E: Status LED)
-    const ledGeo = new THREE.CylinderGeometry(0.035, 0.035, 0.04, 16);
-    this.ledMat = new THREE.MeshBasicMaterial({ color: 0x10b981 }); // Emerald nominal green
+    // Dual-state Status Indicator LED (Component E: Status LED per manual)
+    const ledGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.04, 16);
+    this.ledMat = new THREE.MeshBasicMaterial({ color: 0x10b981 }); // Nominal emerald green
     const led = new THREE.Mesh(ledGeo, this.ledMat);
     led.rotation.x = Math.PI / 2;
     led.position.set(0.85, -1.2, 0.065);
     this.frontHousing.add(led);
 
-    const ledGlow = new THREE.PointLight(0x10b981, 0.6, 0.8);
+    const ledGlow = new THREE.PointLight(0x10b981, 0.7, 0.9);
     ledGlow.position.set(0.85, -1.2, 0.15);
     this.frontHousing.add(ledGlow);
 
@@ -182,38 +184,74 @@ export class GeneracScene {
     this.rearHousing = new THREE.Group();
 
     const rearPlateGeo = new THREE.BoxGeometry(W, H, 0.12);
-    const rearPlate = new THREE.Mesh(rearPlateGeo, aluMat);
+    const rearPlate = new THREE.Mesh(rearPlateGeo, blackEnclosureMat);
     rearPlate.position.z = -0.12;
     this.rearHousing.add(rearPlate);
 
-    // 18 Extruded Aluminum Heatsink Cooling Fins (Rear)
+    // 18 Extruded Black Aluminum Convective Heatsink Cooling Fins (Rear thermal dissipation)
+    const finMat = new THREE.MeshStandardMaterial({
+      color: 0x18181b,
+      metalness: 0.72,
+      roughness: 0.55
+    });
     const finGeo = new THREE.BoxGeometry(0.04, H - 0.2, 0.32);
     for (let i = -1.1; i <= 1.1; i += 0.13) {
-      const fin = new THREE.Mesh(finGeo, aluMat);
+      const fin = new THREE.Mesh(finGeo, finMat);
       fin.position.set(i, 0, -0.32);
       this.rearHousing.add(fin);
     }
 
-    // Upper Mounting Bracket with Keyhole Slot (Printed manual component C)
-    const bracketGeo = new THREE.BoxGeometry(W * 0.5, 0.45, 0.08);
+    // Upper Mounting Bracket with Keyhole Slot (Component C per manual)
+    const bracketGeo = new THREE.BoxGeometry(W * 0.55, 0.45, 0.08);
     const bracket = new THREE.Mesh(bracketGeo, darkTrimMat);
     bracket.position.set(0, H * 0.5 + 0.15, -0.12);
+    
+    // Keyhole slot cutout indicator
+    const slotGeo = new THREE.BoxGeometry(0.18, 0.12, 0.09);
+    const slotMat = new THREE.MeshBasicMaterial({ color: 0x09090b });
+    const slotMesh = new THREE.Mesh(slotGeo, slotMat);
+    slotMesh.position.set(0, H * 0.5 + 0.15, -0.12);
     this.rearHousing.add(bracket);
+    this.rearHousing.add(slotMesh);
 
-    // Lower Dual DC Input Connectors (MC4) & AC Trunk Port (Components B & D)
+    // Equipment Grounding Lug (Brass bolt terminal per installation guidelines)
+    const groundGeo = new THREE.CylinderGeometry(0.05, 0.05, 0.08, 6);
+    const brassMat = new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.9, roughness: 0.25 });
+    const groundLug = new THREE.Mesh(groundGeo, brassMat);
+    groundLug.position.set(W * 0.4, H * 0.5 + 0.05, -0.06);
+    this.rearHousing.add(groundLug);
+
+    // Lower Dual DC Input Connectors (MC4 locking pairs for PV1 & PV2) & AC Trunk Port
     const dcConnGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.45, 12);
-    const connMat = new THREE.MeshStandardMaterial({ color: 0x020617, roughness: 0.7 });
+    const connMat = new THREE.MeshStandardMaterial({ color: 0x09090b, roughness: 0.7, metalness: 0.3 });
+    const ringMatRed = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+    const ringMatBlue = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
+    const ringGeo = new THREE.CylinderGeometry(0.065, 0.065, 0.04, 12);
 
+    // PV1+ and PV1-
     const dc1 = new THREE.Mesh(dcConnGeo, connMat);
-    dc1.position.set(-0.65, -H * 0.5 - 0.18, 0);
+    dc1.position.set(-0.7, -H * 0.5 - 0.18, 0);
+    const ring1 = new THREE.Mesh(ringGeo, ringMatRed);
+    ring1.position.set(-0.7, -H * 0.5 - 0.08, 0);
     this.rearHousing.add(dc1);
+    this.rearHousing.add(ring1);
 
     const dc2 = new THREE.Mesh(dcConnGeo, connMat);
-    dc2.position.set(-0.35, -H * 0.5 - 0.18, 0);
+    dc2.position.set(-0.45, -H * 0.5 - 0.18, 0);
+    const ring2 = new THREE.Mesh(ringGeo, ringMatBlue);
+    ring2.position.set(-0.45, -H * 0.5 - 0.08, 0);
     this.rearHousing.add(dc2);
+    this.rearHousing.add(ring2);
 
-    const acTrunk = new THREE.Mesh(dcConnGeo, connMat);
-    acTrunk.position.set(0.65, -H * 0.5 - 0.18, 0);
+    // PV2+ and PV2-
+    const dc3 = new THREE.Mesh(dcConnGeo, connMat);
+    dc3.position.set(-0.2, -H * 0.5 - 0.18, 0);
+    this.rearHousing.add(dc3);
+
+    // AC Trunk Connector with Threaded Lock Coupler
+    const acTrunkGeo = new THREE.CylinderGeometry(0.09, 0.08, 0.52, 16);
+    const acTrunk = new THREE.Mesh(acTrunkGeo, connMat);
+    acTrunk.position.set(0.65, -H * 0.5 - 0.22, 0);
     this.rearHousing.add(acTrunk);
 
     this.assemblyGroup.add(this.rearHousing);
