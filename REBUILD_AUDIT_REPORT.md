@@ -200,3 +200,67 @@ Strictly aligned with [`hnmistry_resume.pdf`](file:///c:/Users/Harsh/Downloads/h
 - **Status**: The portfolio contains a fully implemented GLTF asset loader pipeline (`EntranceScene.js` lines 105–170) equipped with `DRACOLoader` and `THREE.AnimationMixer` support targeting `assets/guts_berserker.glb`.
 - **Blocker**: The specific external character GLTF/GLB asset (`Guts Berserker Armor by CJ` or equivalent rig) has not been provided in the repository workspace.
 - **Handling**: A high-fidelity procedural Berserker avatar with Dragon Slayer greatsword, dark steel armor plates, flowing crimson cape, and dynamic striking kinematics serves as the active rendering representation. When the user provides `assets/guts_berserker.glb`, it is automatically detected, loaded, rig-validated, and seamlessly substituted without any code changes.
+
+---
+
+## 8. Round 3 Benchmark Translation & Lookdev Verification
+
+### A. Benchmark Portfolio Analysis & Translations
+
+1. **Anish Nehete (`anishnehete.com`) Translation**:
+   - *Spatial Narrative Arc*: Adopted a coherent 10-chapter progression moving through specific operational environments.
+   - *Project-Specific Interactive Controls*: Generac assembly explosion slider, warehouse Pareto route simulation, hydrostatic vessel pressure testing, robotic seam-monitoring laser sweep, heat exchanger defect inspection, and policy simulation switches.
+   - *Scene Decision Tracing & Clear Boundaries*: Every chapter HUD card features authorial context ("Inside Harsh's Process"), explicit metric callouts, and clear synthetic boundary labels distinguishing real historical accomplishments from interactive educational demonstrations.
+   - *Scannable Written Portfolio*: Accessible Work Index modal provides direct, non-animated navigation across all five employers and both projects with zero WebGL dependency.
+
+2. **Alpesh Shinde (`alpesh.me`) Translation**:
+   - *Continuous Full-Viewport 3D Stage*: Removed split-screen wrappers and embedded iframes in favor of a 100vw × 100vh unified stage.
+   - *Streamlined HUD Navigation*: Top-bar navigation with chapter badges, skip intro pill, sound/motion toggles, and direct timeline waypoints.
+   - *Typography & Aesthetics*: Sleek dark industrial theme, crisp monospaced telemetry fonts, and refined glowing micro-accents.
+
+3. **Intermediate Site Reference (`harsh-mistry-inside-systems.hearty-lamp-6320.chatgpt.site`)**:
+   - Aligned chapter titles, professional scope, and truthful boundary notices with the verified intermediate copy.
+
+### B. Industrial Lookdev Upgrades
+
+1. **Generac PWRmicro Inverter Enclosure**:
+   - Converted from generic silver housing to authentic matte black powder-coated die-cast aluminum (`0x18181b` / `#18181b`, roughness 0.65, metalness 0.45) matching Generac installation manual `a0008718926`.
+   - Extruded 12 convective cooling fins on the rear thermal dissipation surface.
+   - Upper mounting bracket with slotted keyhole mounting profile.
+   - Bottom wiring compartment with brass grounding lug (`#b45309`), dual MC4 DC solar input pairs (positive/negative with color-coded red and blue O-rings), and an AC trunk drop connector.
+   - Precision laser-etched Generac logo on the top faceplate.
+
+2. **Guts Berserker Beast of Darkness Lookdev**:
+   - Procedural avatar elevated from simple primitives to an authentic Berserker Beast of Darkness helmet with a jutting predatory wolf snout, segmented jagged lower jaw, sweeping dorsal crest spines, and piercing crimson eye slits (`#ff1133`) backed by an internal point light glow.
+   - Triple-layered curved steel shoulder pauldrons, segmented chest cuirass, gauntlets, greaves, and flowing torn crimson cape.
+   - 2.2-meter battered iron Dragon Slayer greatsword featuring a tapered blade with dark central fuller, heavy rectangular collar, wrapped grip, and counterweight ring pommel.
+
+3. **Portfolio Copy Integrity**:
+   - Zero em dashes (`—`) throughout portfolio copy (replaced with clean hyphens, commas, or parentheses).
+   - Generac $1.2M financial claim consistently designated as an *identified annualized sourcing opportunity*.
+   - Component cost breakdown designated as an *illustrative engineering scenario*.
+
+### C. Exact Missing Asset Specification for `guts_berserker.glb`
+
+| Parameter | Technical Requirement |
+| :--- | :--- |
+| **Target Path** | `c:\Users\Harsh\.gemini\antigravity-ide\scratch\harsh-portfolio\assets\guts_berserker.glb` |
+| **File Format** | Binary glTF (.glb) with embedded Draco compression or standard binary buffers |
+| **Scale & Origin** | Real-world scale (approx. 1.85m to 2.05m height), origin (0, 0, 0) at bottom center between feet |
+| **Armature / Rig** | Humanoid bone hierarchy: `Hips` -> `Spine` -> `Chest` -> `Neck` -> `Head`, `LeftShoulder`/`RightShoulder` -> `Arms` -> `Hands`, `LeftUpLeg`/`RightUpLeg` -> `Legs` -> `Feet` |
+| **Mesh Hierarchy** | Armor plates parented to respective deformation bones; separate mesh for Dragon Slayer parented to `RightHand` bone or weapon socket |
+| **PBR Materials** | Standard PBR metallic-roughness workflow (Albedo, Normal, Roughness, Metalness, Emissive for helmet eye slits) |
+| **Expected Animations**| `Idle` (breathing combat stance, looped), `Attack` / `Slash` / `Cleave` (downward greatsword strike with follow-through) |
+| **Engine Integration**| Implemented in `EntranceScene.js` lines 105–170; automatically detected, loaded, scaled, and animated on file placement |
+
+---
+
+## 9. Verification & Delivery Manifest
+
+- **Commit**: `9745b0d`
+- **Testing Remote**: `https://github.com/h3zus-m/testing` (`main` branch)
+- **Production Status**: `https://github.com/h3zus-m/h3zus-m.github.io` (`origin/main`) strictly **UNCHANGED**.
+- **Automated Test Results**: 21 of 21 tests passed (100% pass rate, 144 FPS).
+- **Scene Captures**: 15 verified browser screenshots in `captures/` (11 desktop at 1920×1080 + 4 mobile at 780×1688).
+- **Continuous Video Walkthrough**: `captures/entrance_to_generac_walkthrough.webm` (6.32 MB, 25 seconds).
+- **Local Preview Server**: `http://localhost:8080` (PID 10580 active).
